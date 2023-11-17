@@ -12,22 +12,6 @@ const AddPost = ({ contacts, addContact }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkContactEmailExists = contacts.filter((contact) =>
-      contact.email === email ? contact : null
-    );
-    const checkContactPhoneExists = contacts.filter((contact) =>
-      contact.phone === phone ? contact : null
-    );
-
-    if (!email || !name || !phone) {
-      return toast.warning("Please fill in all fields!!");
-    }
-    if (checkContactEmailExists.length > 0) {
-      return toast.error("This email already exists!!");
-    }
-    if (checkContactPhoneExists.length > 0) {
-      return toast.error("This phone number already exists!!");
-    }
 
     const data = {
       id: contacts.length > 0 ? contacts[contacts.length - 1].id + 1 : 0,
@@ -37,7 +21,7 @@ const AddPost = ({ contacts, addContact }) => {
     };
 
     addContact(data);
-    toast.success("Contact added successfully!!");
+    toast.success("Blog  added successfully!!");
     history.push("/");
   };
 
@@ -51,7 +35,7 @@ const AddPost = ({ contacts, addContact }) => {
               <input
                 className="form-control"
                 type="text"
-                placeholder="Full name"
+                placeholder="Title"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -59,8 +43,8 @@ const AddPost = ({ contacts, addContact }) => {
             <div className="form-group">
               <input
                 className="form-control"
-                type="email"
-                placeholder="Email"
+                type="text"
+                placeholder="Category"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -68,8 +52,8 @@ const AddPost = ({ contacts, addContact }) => {
             <div className="form-group">
               <input
                 className="form-control"
-                type="number"
-                placeholder="Phone"
+                type="text"
+                placeholder="Content"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -78,7 +62,7 @@ const AddPost = ({ contacts, addContact }) => {
               <input
                 className="btn btn-block btn-dark"
                 type="submit"
-                value="Add Student"
+                value="Add Blog"
               />
             </div>
           </form>

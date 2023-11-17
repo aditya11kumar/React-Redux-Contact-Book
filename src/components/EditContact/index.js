@@ -7,7 +7,7 @@ const EditContact = ({ contacts, updateContact }) => {
   const { id } = useParams();
   const history = useHistory();
   const currentContact = contacts.find(
-    (contact) => contact.id === parseInt(id)
+    (contact) => contact.id === parseInt(id),
   );
 
   useEffect(() => {
@@ -22,27 +22,6 @@ const EditContact = ({ contacts, updateContact }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkContactEmailExists = contacts.filter((contact) =>
-      contact.email === email && contact.id !== currentContact.id
-        ? contact
-        : null
-    );
-    const checkContactPhoneExists = contacts.filter((contact) =>
-      contact.phone === phone && contact.id !== currentContact.id
-        ? contact
-        : null
-    );
-
-    if (!email || !name || !phone) {
-      return toast.warning("Please fill in all fields!!");
-    }
-    if (checkContactEmailExists.length > 0) {
-      return toast.error("This email already exists!!");
-    }
-    if (checkContactPhoneExists.length > 0) {
-      return toast.error("This phone number already exists!!");
-    }
-
     const data = {
       id: currentContact.id,
       email,
@@ -51,7 +30,7 @@ const EditContact = ({ contacts, updateContact }) => {
     };
 
     updateContact(data);
-    toast.success("Contact updated successfully!!");
+    toast.success("blog updated successfully!!");
     history.push("/");
   };
 
@@ -71,7 +50,7 @@ const EditContact = ({ contacts, updateContact }) => {
                 <input
                   className="form-control"
                   value={name}
-                  placeholder={"Name"}
+                  placeholder={"Title"}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -79,7 +58,7 @@ const EditContact = ({ contacts, updateContact }) => {
                 <input
                   className="form-control"
                   value={email}
-                  placeholder={"Email"}
+                  placeholder={"Category"}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -87,13 +66,13 @@ const EditContact = ({ contacts, updateContact }) => {
                 <input
                   className="form-control"
                   value={phone}
-                  placeholder={"Phone"}
+                  placeholder={"Content"}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               <div className="form-group d-flex align-items-center justify-content-between my-2">
                 <button type="submit" className="btn btn-primary">
-                  Update Contact
+                  Update blog
                 </button>
                 <button
                   type="button"
@@ -105,7 +84,7 @@ const EditContact = ({ contacts, updateContact }) => {
               </div>
             </form>
           ) : (
-            <h1 className="text-center">No Contact Found</h1>
+            <h1 className="text-center">No Blog Found</h1>
           )}
         </div>
       </div>

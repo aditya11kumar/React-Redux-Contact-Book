@@ -1,6 +1,18 @@
 const initialState = [
-  { id: 0, name: "Raman Sharma", email: "email@email.com", phone: 1234567890 },
-  { id: 1, name: "Test Name", email: "test@test.com", phone: 4567891230 },
+  {
+    id: 0,
+    name: "my blog",
+    email: "food",
+    phone:
+      "Food is very important for our health. · We need food to survive and stay fit",
+  },
+  {
+    id: 1,
+    name: "myblog",
+    email: "consistency",
+    phone:
+      "Success isn't always about greatness. It's about consistency. Consistent hard work leads to success",
+  },
 ];
 
 export const contactReducer = (state = initialState, action) => {
@@ -10,7 +22,7 @@ export const contactReducer = (state = initialState, action) => {
       return state;
     case "DELETE_CONTACT":
       const contactFilter = state.filter((contact) =>
-        contact.id === action.payload ? null : contact
+        contact.id === action.payload ? null : contact,
       );
       state = contactFilter;
       return state;
@@ -18,7 +30,7 @@ export const contactReducer = (state = initialState, action) => {
       const contactUpdate = state.filter((contact) =>
         contact.id === action.payload.id
           ? Object.assign(contact, action.payload)
-          : contact
+          : contact,
       );
       state = contactUpdate;
       return state;
